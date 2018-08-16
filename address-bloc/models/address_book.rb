@@ -2,26 +2,17 @@
 require_relative 'entry'
 require "csv"
 
-    class AddressBook
-        attr_reader :entries
+class AddressBook
+    attr_reader :entries
     
-        def initialize
-            @entries = []
-        end
+    def initialize
+        @entries = []
     end
-
-    def remove_entry(name, phone_number, email)
-        delete_entry = nil
-        
-        @entries.each do |entry|
-            if name == entry.name && phone == entry.phone.number && email = entry.email
-                delete_entry = entry
-            end
-        end
-        
-        @entries.delete(delete_entry)
+    
+    def annihilate
+        @entries = []
     end
-
+    
     def add_entry(name, phone_number, email)
         # #9
         index = 0
@@ -35,6 +26,18 @@ require "csv"
         # #11
         entries.insert(index, Entry.new(name, phone_number, email))
     end
+    
+    def remove_entry(name, phone_number, email)
+        delete_entry = nil
+        
+        @entries.each do |entry|
+            if name == entry.name && phone == entry.phone.number && email = entry.email
+                delete_entry = entry
+            end
+        end
+        
+        @entries.delete(delete_entry)
+    end
 
     # #7 Define import_from_csv. The method starts by reading the file, using File.read. The file will be in a CSV format. We use the CSV class to parse the file. The result of CSV.parse is an object of type CSV::Table
     def import_from_csv(file_name)
@@ -46,13 +49,6 @@ require "csv"
             row_hash = row.to_hash
             add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"])
         end
-    end
-
-    def iterative_search(name)
-        @entries.each do |entry|
-            if entry.name == name
-                return entry
-            end
     end
     
     # Search AddressBook for a specific entry by name
@@ -79,5 +75,12 @@ require "csv"
         
         # #5 divide and conquer to the point where no match is found, we return nil
         return nil
+    end
+    
+    def iterative_search(name)
+        @entries.each do |entry|
+            if entry.name == name
+                return entry
+            end
     end
 end

@@ -11,6 +11,10 @@ RSpec.describe AddressBook do
     expect(entry.email).to eq expected_email
     end
 
+    context "#annihilate" do
+        it "should delete all entries" do
+    end
+
     # #2 describe and it statements (which are an RSpec paradigm) to explain what we are testing
     describe "attributes" do
         it "responds to entries" do
