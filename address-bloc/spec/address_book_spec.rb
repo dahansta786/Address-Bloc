@@ -13,6 +13,8 @@ RSpec.describe AddressBook do
 
     context "#annihilate" do
         it "should delete all entries" do
+            expect(book.entries).to eq(0))
+        end
     end
 
     # #2 describe and it statements (which are an RSpec paradigm) to explain what we are testing
